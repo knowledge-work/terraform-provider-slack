@@ -1,7 +1,7 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
   extends: [
-    "github>knowledge-work/renovate-config",
+    "local>knowledge-work/renovate-config",
     // 以下はこのリポジトリ固有の設定
     ":semanticCommits",
     ":separateMajorReleases",
