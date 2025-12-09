@@ -1,4 +1,37 @@
 {
-  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-  extends: ['github>tapihdev/renovate-config:default.json5']
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  extends: [
+    "local>knowledge-work/renovate-config",
+    // 以下はこのリポジトリ固有の設定
+    ":semanticCommits",
+    ":separateMajorReleases",
+    ":ignoreUnstable",
+    "helpers:pinGitHubActionDigestsToSemver",
+    "schedule:automergeNonOfficeHours",
+  ],
+  configMigration: true,
+  rebaseWhen: "conflicted",
+  prNotPendingHours: 1,
+  stabilityDays: 3,
+  postUpdateOptions: ["gomodTidy", "pnpmDedupe", "npmDedupe"],
+  lockFileMaintenance: {
+    enabled: true,
+    automerge: true,
+  },
+  vulnerabilityAlerts: {
+    labels: ["security"],
+    automerge: true,
+  },
+  packageRules: [
+    {
+      matchDepTypes: ["action"],
+      excludePackagePrefixes: ["actions/"],
+      pinDigests: true,
+    },
+    {
+      matchUpdateTypes: ["minor", "patch"],
+      matchCurrentVersion: "!/^0/",
+      automerge: true,
+    },
+  ],
 }
