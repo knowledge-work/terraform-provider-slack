@@ -9,7 +9,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.36.1
 	github.com/katbyte/terrafmt v0.5.4
 	github.com/slack-go/slack v0.16.0
-	github.com/stretchr/testify v1.10.0
+	github.com/stretchr/testify v1.11.1
 	github.com/ysmood/golangci-lint v0.13.1
 )
 
