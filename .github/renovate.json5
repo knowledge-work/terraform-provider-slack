@@ -1,36 +1,48 @@
 {
-  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    "local>knowledge-work/renovate-config",
-    // 以下はこのリポジトリ固有の設定
-    ":semanticCommits",
-    ":separateMajorReleases",
-    ":ignoreUnstable",
-    "helpers:pinGitHubActionDigestsToSemver",
-    "schedule:automergeNonOfficeHours",
+    'local>knowledge-work/renovate-config',
+    ':semanticCommits',
+    ':separateMajorReleases',
+    ':ignoreUnstable',
+    'helpers:pinGitHubActionDigestsToSemver',
+    'schedule:automergeNonOfficeHours',
   ],
   configMigration: true,
-  rebaseWhen: "conflicted",
+  rebaseWhen: 'conflicted',
   prNotPendingHours: 1,
-  stabilityDays: 3,
-  postUpdateOptions: ["gomodTidy", "pnpmDedupe", "npmDedupe"],
+  minimumReleaseAge: '3 days',
+  postUpdateOptions: [
+    'gomodTidy',
+    'pnpmDedupe',
+    'npmDedupe',
+  ],
   lockFileMaintenance: {
     enabled: true,
     automerge: true,
   },
   vulnerabilityAlerts: {
-    labels: ["security"],
+    labels: [
+      'security',
+    ],
     automerge: true,
   },
   packageRules: [
     {
-      matchDepTypes: ["action"],
-      excludePackagePrefixes: ["actions/"],
+      matchDepTypes: [
+        'action',
+      ],
       pinDigests: true,
+      matchPackageNames: [
+        '!actions/{/,}**',
+      ],
     },
     {
-      matchUpdateTypes: ["minor", "patch"],
-      matchCurrentVersion: "!/^0/",
+      matchUpdateTypes: [
+        'minor',
+        'patch',
+      ],
+      matchCurrentVersion: '!/^0/',
       automerge: true,
     },
   ],
