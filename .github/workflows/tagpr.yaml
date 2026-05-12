@@ -24,7 +24,7 @@ jobs:
 
       - name: Tagpr
         id: tagpr
-        uses: tapihdev/actionshub/Songmu/tagpr@main
+        uses: tapihdev/actionshub/Songmu/tagpr@c6c445d4204e1a272c7e2cdbcfb06d490ecf9f9f # main
         with:
           github-token: ${{ steps.token.outputs.token }}
 
