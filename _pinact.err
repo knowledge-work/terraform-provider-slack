@@ -1,0 +1,3 @@
+ERROR failed to handle a line: action can't be pinned
+.github/workflows/tagpr.yaml:27
+        uses: tapihdev/actionshub/Songmu/tagpr@main
