@@ -35,6 +35,7 @@
 - fix: eMudhra の中間 CA 鍵漏洩への対応として Go を 1.26.10 に上げる by @tapih in https://github.com/knowledge-work/terraform-provider-slack/pull/49
 - ci: tagpr を upstream の v1.20.0 に置き換える by @tapih in https://github.com/knowledge-work/terraform-provider-slack/pull/50
 - :arrow_up: Update Songmu/tagpr action to v1.21.2 by @renovate[bot] in https://github.com/knowledge-work/terraform-provider-slack/pull/51
+- ci: tagpr の versionFile を - にして version file の自動検出を止める by @tapih in https://github.com/knowledge-work/terraform-provider-slack/pull/52
 
 ## [v0.0.1](https://github.com/knowledge-work/terraform-provider-slack/commits/v0.0.1) - 2025-10-22
 - update: release by @yumafuu in https://github.com/knowledge-work/terraform-provider-slack/pull/1
