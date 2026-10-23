@@ -5,7 +5,7 @@ go 1.25.8
 require (
 	github.com/bflad/tfproviderdocs v0.12.1
 	github.com/hashicorp/go-multierror v1.1.1
-	github.com/hashicorp/terraform-plugin-log v0.10.0
+	github.com/hashicorp/terraform-plugin-log v0.11.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.40.1
 	github.com/katbyte/terrafmt v0.5.6
 	github.com/slack-go/slack v0.27.0
