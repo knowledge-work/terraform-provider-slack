@@ -1,13 +1,23 @@
 {
   $schema: 'https://docs.renovatebot.com/renovate-schema.json',
   extends: [
-    'local>knowledge-work/renovate-config',
+    'config:best-practices',
+    ':disableRateLimiting',
     ':semanticCommits',
     ':separateMajorReleases',
     ':ignoreUnstable',
     'helpers:pinGitHubActionDigestsToSemver',
     'schedule:automergeNonOfficeHours',
   ],
+  // config:best-practices の security:minimumReleaseAgeNpm は npm にだけ 3 日の packageRule を足し、
+  // 下の 7 日より後から効いてしまうので外す。待つ日数は minimumReleaseAge で全 datasource にそろえる
+  ignorePresets: ['security:minimumReleaseAgeNpm'],
+  timezone: 'Asia/Tokyo',
+  minimumReleaseAge: '7 days',
+  internalChecksFilter: 'strict',
+  commitMessagePrefix: ':arrow_up:',
+  labels: ['renovate'],
+  ignorePaths: ['**/node_modules/**', '**/bower_components/**'],
   configMigration: true,
   rebaseWhen: 'conflicted',
   prNotPendingHours: 1,
@@ -19,14 +29,30 @@
   lockFileMaintenance: {
     enabled: true,
     automerge: true,
+    branchTopic: "lock-file-maintenance-{{#if (containsString manager 'terraform')}}terraform{{else}}{{#if (containsString manager 'npm')}}pnpm{{else}}{{packageFile}}{{/if}}{{/if}}",
+    commitMessageExtra: "({{#if (containsString manager 'terraform')}}terraform{{else}}{{#if (containsString manager 'npm')}}pnpm{{else}}{{packageFile}}{{/if}}{{/if}})",
+    extends: ['schedule:weekly'],
   },
   vulnerabilityAlerts: {
+    enabled: true,
     labels: [
       'security',
     ],
     automerge: true,
   },
   packageRules: [
+    // リリース日を持たず minimumReleaseAge を確かめられない更新の種類は、待たずに PR を作る
+    {
+      matchUpdateTypes: ['lockFileMaintenance', 'replacement', 'pin'],
+      minimumReleaseAge: null,
+    },
+    {
+      matchUpdateTypes: ['digest'],
+      minimumReleaseAge: null,
+      prBodyNotes: [
+        '⚠️ digest の更新は、Renovate がリリース日を取れないため minimumReleaseAge で待てません。PR はすぐ作られるので、7 日経ってからマージしてください。',
+      ],
+    },
     {
       matchDepTypes: [
         'action',
