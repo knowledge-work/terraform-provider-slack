@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.1.1](https://github.com/knowledge-work/terraform-provider-slack/compare/v0.1...v0.1.1) - 2026-11-18
+
+- chore(renovate): inline the shared preset settings this repository uses by @mado-m in https://github.com/knowledge-work/terraform-provider-slack/pull/55
+
 ## [v0.1.0](https://github.com/knowledge-work/terraform-provider-slack/compare/v0.0.1...v0.1.0) - 2026-10-23
 
 - :arrow_up: [CI] Renovate 設定を共通設定に移行 by @hori-ryota in https://github.com/knowledge-work/terraform-provider-slack/pull/6
